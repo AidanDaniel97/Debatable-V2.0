@@ -1,0 +1,131 @@
+  
+    <!-- Navigation 
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">Debatable</a>
+            </div>
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li>
+                        <a href="#">About</a>
+                    </li>
+                    <li>
+                        <a href="#">Services</a>
+                    </li>
+                    <li>
+                        <a href="#">Contact</a>
+                    </li>
+                </ul>
+            </div> 
+        </div> 
+    </nav>  --> 
+
+	
+    <div class="container-fluid header_background">
+            <div class="row">
+                <div class="jumbotron">
+                  <h1>Debatable</h1>
+                  <h2 class="lead">The realtime debating website for all your mass debate needs.</h2>
+                </div>
+            </div>
+    </div> 
+
+
+
+    <!-- Page Content -->
+    <div class="container">
+
+        <!-- Page Header -->
+        <div class="row">
+            <div class="col-md-8">
+                <h1 class="page-header">
+                    Top Debates
+                    <small>{{ current_date }}</small>
+                </h1>
+            </div> 
+        </div>
+        
+
+
+		
+		  
+        <!-- Debate Topics -->
+        {{#each topic_list as |current_topic|}}
+            {{#ifFirst @index}}
+                  <div class="row"> 
+            {{/ifFirst}}
+                
+                <div class="col-md-4 portfolio-item"> 
+                    <img class="img-responsive" src="{{ current_topic.topic_image }}" alt="">
+                    <h3>
+                        <a href="#">{{ current_topic.topic_name }}</a>
+                    </h3>
+                    <p>{{ current_topic.topic_desc }}</p>
+                    <button class="btn btn-default join_debate debate_button" data-debateName = "{{ current_topic.topic_name_short }}">Join Debate</button>
+                    <button class="btn btn-default spectate_debate debate_button" data-debateName = "{{ current_topic.topic_name_short }}">Spectate Debate</button>
+                </div> 
+
+            {{#ifThird @index}}
+                  </div> 
+            {{/ifThird}}
+
+
+        {{/each}}
+ 
+
+        <hr>
+
+        <!-- Pagination -->
+        <div class="row text-center">
+            <div class="col-lg-12">
+                <ul class="pagination">
+                    <li>
+                        <a href="#">&laquo;</a>
+                    </li>
+                    <li class="active">
+                        <a href="#">1</a>
+                    </li>
+                    <li>
+                        <a href="#">2</a>
+                    </li>
+                    <li>
+                        <a href="#">3</a>
+                    </li>
+                    <li>
+                        <a href="#">4</a>
+                    </li>
+                    <li>
+                        <a href="#">5</a>
+                    </li>
+                    <li>
+                        <a href="#">&raquo;</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <!-- /.row -->
+
+        <hr>
+
+        <!-- Footer -->
+        <footer>
+            <div class="row">
+                <div class="col-lg-12">
+                    <p>Copyright &copy; Debatable 2017</p>
+                </div>
+            </div>
+            <!-- /.row -->
+        </footer>
+
+    </div>
+    <!-- /.container -->
+
+    
+ 

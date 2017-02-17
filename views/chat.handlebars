@@ -1,0 +1,139 @@
+ 
+    
+      <style>
+         * { margin: 0; padding: 0; box-sizing: border-box; }
+         body { font: 13px Helvetica, Arial; }
+         form { background: #000; padding: 3px; position: fixed; bottom: 0; width: 100%; }
+         form input { border: 0; padding: 10px; width: 90%; margin-right: .5%; }
+         form button { width: 9%; background: rgb(130, 224, 255); border: none; padding: 10px; }
+         #messages { list-style-type: none; margin: 0; padding: 0; }
+         #messages li { padding: 5px 10px; }
+         #messages li:nth-child(odd) { background: #eee; }
+      </style>
+  
+
+   <!--    {debate_mode:req.params.debate_mode, debate_db_info:result}   -->
+      <h1>This is the chat page</h1>
+      <h1>Debate name: {{ debate_db_info.[0].topic_name }}</h1>
+      <h3>Debate mode: {{ debate_mode }}</h3>      
+      <h3 id="room_id_text">Room id: not in a room</h3> 
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Welcome to the {{ debate_db_info.[0].topic_name }} debate</h4>
+      </div>
+      <div class="modal-body">
+        <h3>Here would be a section for the debate description. Many agree and many do not, what about you?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" data-debate_side="agree">I Agree</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal" data-debate_side="disagree">I Disagree</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+      <ul id="messages"></ul>
+      <form action="">
+         <input id="m" autocomplete="off" /><button>Send</button>
+      </form>
+
+
+
+
+
+<script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+     <script src="https://cdn.socket.io/socket.io-1.4.5.js"></script>
+      <script>
+
+     
+ 
+    // A $( document ).ready() block.
+    $( document ).ready(function() {
+         $('#myModal').modal('toggle');
+
+
+         var room_id = null;
+         var socket = io(); 
+
+         //Check the mode the user is in
+         if ('{{ debate_mode }}' == 'spectate'){
+          socket.emit('spectate_debate', '{{ debate_db_info.[0].topic_name }}');
+         }else{
+          //Allow sending messages  (need to add server side validation even though added to a differtent room if spectating)
+            $('form').submit(function(){
+            message_value = {"message":$('#m').val(), "room_id":room_id}
+          socket.emit('chat message', message_value);
+          $('#m').val('');
+          return false;
+        });
+
+       socket.on("new message",function(message){
+          $('#messages').append($('<li>').text(message));
+
+      
+         });
+
+
+       $('.btn-default').click(function($this){ 
+        debate_side = $(this).attr("data-debate_side");
+        debate_info = {'debate_name':'{{ debate_db_info.[0].topic_name_short }}','debate_side':debate_side}
+        console.log(debate_info);
+            socket.emit('join_debate', debate_info);
+       })
+
+        //User has just joined this room
+    socket.on("joined_room",function(room_data){ 
+           room_id = room_data.room_id;
+           $('#room_id_text').html("Room id: " + room_id)
+           console.log(room_data);
+
+         });
+
+
+    socket.on("disconnect",function(socket){ 
+      console.log(socket.id)
+    });
+
+
+
+    
+  socket.on('get_queue', function(msg){
+    console.log("Queue recieved: " , msg);
+    });
+
+
+    socket.on('log_data', function(data){
+    console.log("New data to be logged: " , data);
+    });
+ 
+ 
+
+
+
+         }
+
+        
+
+    });
+
+
+ 
+
+      </script>
+
+
+
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+ 
+   </body> 
