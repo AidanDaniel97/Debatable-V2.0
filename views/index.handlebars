@@ -50,11 +50,7 @@
                     <small>{{ current_date }}</small>
                 </h1>
             </div> 
-        </div>
-        
-
-
-		
+        </div> 
 		  
         <!-- Debate Topics -->
         {{#each topic_list as |current_topic|}}
@@ -68,8 +64,15 @@
                         <a href="#">{{ current_topic.topic_name }}</a>
                     </h3>
                     <p>{{ current_topic.topic_desc }}</p>
-                    <button class="btn btn-default join_debate debate_button" data-debateName = "{{ current_topic.topic_name_short }}">Join Debate</button>
-                    <button class="btn btn-default spectate_debate debate_button" data-debateName = "{{ current_topic.topic_name_short }}">Spectate Debate</button>
+                       {{#if ../user}}
+                        <button class="btn btn-default join_debate debate_button" data-debateName = "{{ current_topic.topic_name_short }}">Join Debate</button>
+                        <button class="btn btn-default spectate_debate debate_button" data-debateName = "{{ current_topic.topic_name_short }}">Spectate Debate</button>
+                       {{else}} 
+                        <a href="/users/login"><button class="btn btn-default" >Login to Join Debate</button></a>
+                        <button class="btn btn-default spectate_debate debate_button" data-debateName = "{{ current_topic.topic_name_short }}">Spectate Debate</button>
+                       {{/if}}
+
+                    
                 </div> 
 
             {{#ifThird @index}}

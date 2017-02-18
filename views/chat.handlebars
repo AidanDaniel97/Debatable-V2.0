@@ -12,9 +12,8 @@
       </style>
   
 
-   <!--    {debate_mode:req.params.debate_mode, debate_db_info:result}   -->
-      <h1>This is the chat page</h1>
-      <h1>Debate name: {{ debate_db_info.[0].topic_name }}</h1>
+   <!--    {debate_mode:req.params.debate_mode, debate_db_info:result}   --> 
+      <h2>Debate name: {{ debate_db_info.[0].topic_name }}</h2>
       <h3>Debate mode: {{ debate_mode }}</h3>      
       <h3 id="room_id_text">Room id: not in a room</h3> 
 
@@ -29,7 +28,7 @@
         <h4 class="modal-title" id="myModalLabel">Welcome to the {{ debate_db_info.[0].topic_name }} debate</h4>
       </div>
       <div class="modal-body">
-        <h3>Here would be a section for the debate description. Many agree and many do not, what about you?
+        <h3>{{debate_db_info.[0].topic_desc}}
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal" data-debate_side="agree">I Agree</button>
