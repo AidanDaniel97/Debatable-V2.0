@@ -10,8 +10,9 @@ var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 var mongo = require('mongodb');
 var mongoose = require('mongoose');
+var bodyParser = require('body-parser');
 
-mongoose.connect('mongodb://localhost/loginapp');
+mongoose.connect('mongodb://localhost/debatable');
 var db = mongoose.connection;
 
 var routes = require('./routes/index');
@@ -101,6 +102,8 @@ app.use('/', routes);
 app.use('/users', users);
 app.use('/admin', admin);
 app.use('/chat', chat);
+
+
 
 // Set Port
 app.set('port', (process.env.PORT || 3000));
