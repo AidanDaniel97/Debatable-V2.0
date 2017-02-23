@@ -12,7 +12,7 @@
 
 
     <!-- Page Content -->
-    <div class="container-fluid">
+    <div class="container">
 
         <!-- Page Header -->
         <div class="row">
@@ -40,12 +40,16 @@
                         <div class="card">
                             <div class="card-image">
                                 <img class="img-responsive" src="{{ current_topic.topic_image }}" alt="">
-                                <span class="card-title">{{ current_topic.topic_name }}</span>
+                                <span class="card-title">
+                                {{ current_topic.topic_name }}
+                                <p class="card-desc">{{ current_topic.topic_desc }}</p>
+                                </span>
+
                             </div>
                             
-                            <div class="card-content">
+                            <!--<div class="card-content">
                                 <p>{{ current_topic.topic_desc }}</p>
-                            </div>
+                            </div>-->
                             
                             <div class="card-action" align="center">
                                   {{#if ../user}}
