@@ -11,6 +11,13 @@ var LocalStrategy = require('passport-local').Strategy;
 var mongo = require('mongodb');
 var mongoose = require('mongoose');
 var bodyParser = require('body-parser');
+ 
+var MongoStore = require('connect-mongo')(session);
+var mongostore = new MongoStore({
+        db: 'debatable',
+        url: 'mongodb://localhost/debatable'
+    });
+
 
 mongoose.connect('mongodb://localhost/debatable');
 var db = mongoose.connection;
@@ -58,10 +65,11 @@ app.use(express.static(path.join(__dirname, 'public')));
 // Express Session
 app.use(session({
     secret: 'secret',
+    key: 'express.sid',
+    store: mongostore,
     saveUninitialized: true,
     resave: true
-}));
-
+})); 
 // Passport init
 app.use(passport.initialize());
 app.use(passport.session());
@@ -109,10 +117,10 @@ app.use('/chat', chat);
 app.set('port', (process.env.PORT || 3000));
 
 var server = app.listen(app.get('port'), function(){
-	console.log('Server started on port '+app.get('port'));
+	console.log('Server started on port '+ app.get('port'));
 });
 
+ 
 
-var io = require('./lib/chat_sockets').listen(server)
-
-
+//require module - pass server 
+var io = require('./lib/chat_sockets').listen(server,mongostore)

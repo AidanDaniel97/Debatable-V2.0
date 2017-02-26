@@ -229,6 +229,7 @@ footer {
   padding: 16px;
   width: 100%;
   background-color: rgba(29, 29, 29, 0.6);
+  text-align: center;
 }
 .card .card-image  p.card-desc { 
     /* top: 0; */
@@ -260,6 +261,7 @@ footer {
   text-align: center;
   top: 25%;
   transition: 2s;
+  word-wrap: break-word;
 }
 
 

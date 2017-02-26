@@ -75,8 +75,9 @@
           return false;
         });
 
-       socket.on("new message",function(message){
-          $('#messages').append($('<li>').text(message));
+       socket.on("new message",function(message){//'message', 'room_id', 'username'
+          console.log(message)
+          $('#messages').append($('<li>').text(message.username + ": " + message.message));
 
       
          });
