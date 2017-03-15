@@ -2,6 +2,7 @@ var express = require('express');
 var mongodb = require('mongodb'); 
 var date = require('./controllers/date_time')
 var router = express.Router();
+var db_query = require('../models/db_queries')
 
 // Get Homepage
 router.get('/',function(req, res){
@@ -11,43 +12,12 @@ router.get('/',function(req, res){
 		var mongoUrl = "mongodb://127.0.0.1:27017/debatable";
 		var server_date = date.get_date();
 
-
-
 		MongoClient.connect(mongoUrl,function(err,db){
-			if(err){
-				console.log("Unable to connect to MongoDB " , err)
-			}else{
-				console.log("Connection establish with MongoDB")
-			
-				var topics = db.collection("topics");
 
-				topics.find().toArray(function(err,result){ 
-					if (err){
-						console.log("Error retrieving database collection");
-					}else if (result){ 
-						if(req.isAuthenticated()){
-							res.render("index",{'topic_list':result,'current_date':server_date,"authenticated":true,"username":req.user.name,"admin":req.user.admin}); //the response data can be changed
-							
-						}else{
-							res.render("index",{'topic_list':result,'current_date':server_date}); //the response data can be changed
-							
-						}
+			db_query.get_all_debates(req,res,db,server_date)
 
-					}else{
-						console.log("No data found in collection");
-						res.render("index",{'topic_list':result,'current_date':server_date,"username":req.user.name,"admin":req.user.admin}); //the response data can be changed
-					}
-
-					db.close();
-				});
-
-				
-			}
-
-
-		})
-	 
-
+		});
+ 
 
 
 

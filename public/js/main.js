@@ -15,6 +15,4 @@ $(".spectate_debate").click(function($this){
 });
 
 
-
-
  

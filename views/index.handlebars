@@ -14,6 +14,8 @@
     <!-- Page Content -->
     <div class="container">
 
+        
+
         <!-- Page Header -->
         <div class="row">
             <div class="col-md-12">
@@ -23,20 +25,16 @@
                 </h1>
             </div> 
         </div> 
-		  
+          
         <!-- Debate Topics -->
-        {{#each topic_list as |current_topic|}}
+        {{#each top_debates_list as | current_topic|}}
             {{#ifFirst @index}}
                   <div class="row"> 
             {{/ifFirst}}
           
-                     
-                     
+                      
 
-
-
-
-                    <div class="col-md-4">
+                    <div class="col-sm-4">
                         <div class="card">
                             <div class="card-image">
                                 <img class="img-responsive" src="{{ current_topic.topic_image }}" alt="">
@@ -64,20 +62,120 @@
                             </div>
                         </div>
                     </div>
-
-                     
+                   
 
             {{#ifThird @index}}
+                  
                   </div> 
+
+            {{else}}
+
+                {{#if @last}} 
+                    </div>
+                {{/if}}
+
             {{/ifThird}}
 
 
         {{/each}}
 
 
+        <!-- Pagination -->
+        <div class="row text-center">
+            <div class="col-lg-12">
+                <ul class="pagination">
+                    <li>
+                        <a href="#">&laquo;</a>
+                    </li>
+                    <li class="active">
+                        <a href="#">1</a>
+                    </li>
+                    <li>
+                        <a href="#">2</a>
+                    </li>
+                    <li>
+                        <a href="#">3</a>
+                    </li>
+                    <li>
+                        <a href="#">4</a>
+                    </li>
+                    <li>
+                        <a href="#">5</a>
+                    </li>
+                    <li>
+                        <a href="#">&raquo;</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <!-- /.row -->
  
 
-        <hr>
+        <!--User debates-->
+
+        <!-- Page Header -->
+        <div class="row">
+            <div class="col-md-12">
+                <h1 class="page-header">
+                    User Debates
+                    <small>{{ current_date }}</small>
+                </h1>
+            </div> 
+        </div> 
+          
+        <!-- user Debate Topics -->
+        {{#each user_debates_list as | current_topic|}}
+            {{#ifFirst @index}}
+                  <div class="row"> 
+            {{/ifFirst}}
+          
+                      
+
+                    <div class="col-sm-4">
+                        <div class="card">
+                            <div class="card-image">
+                                <img class="img-responsive" src="{{ current_topic.topic_image }}" alt="">
+                                <span class="card-title">
+                                {{ current_topic.topic_name }}
+                                <p class="card-desc">{{ current_topic.topic_desc }}</p>
+                                </span>
+
+                            </div>
+                            
+                            <!--<div class="card-content">
+                                <p>{{ current_topic.topic_desc }}</p>
+                            </div>-->
+                            
+                            <div class="card-action" align="center">
+                                  {{#if ../user}}
+                        <button class="btn btn-default join_debate debate_button" data-debateName = "{{ current_topic.topic_name_short }}">Join Debate</button>
+                        <button class="btn btn-default spectate_debate debate_button" data-debateName = "{{ current_topic.topic_name_short }}">Spectate Debate</button>
+                       {{else}} 
+                        <a href="/users/login"><button class="btn btn-default" >Login to Join Debate</button></a>
+                        <button class="btn btn-default spectate_debate debate_button" data-debateName = "{{ current_topic.topic_name_short }}">Spectate Debate</button>
+                       {{/if}}
+
+
+                            </div>
+                        </div>
+                    </div>
+                   
+
+            {{#ifThird @index}}
+                  
+                  </div> 
+
+            {{else}}
+
+                {{#if @last}} 
+                    </div>
+                {{/if}}
+
+            {{/ifThird}}
+
+
+        {{/each}}
+
 
         <!-- Pagination -->
         <div class="row text-center">
@@ -110,6 +208,7 @@
         <!-- /.row -->
 
         <hr>
+ 
  
 
     </div>

@@ -26,6 +26,7 @@ var routes = require('./routes/index');
 var users = require('./routes/users');
 var admin = require('./routes/admin');
 var chat = require('./routes/chat');
+var profile = require('./routes/profile')
 
 // Init App
 var app = express();
@@ -37,6 +38,13 @@ app.engine('handlebars', exphbs({
   helpers: {
     ifFirst: function (index, options) { 
       if((index + 1) % 3 == 1){
+        return options.fn(this);//if
+      } else {
+        return options.inverse(this);//else
+      } 
+    },
+    ifSecond: function (index, options) { 
+      if((index + 1) % 3 == 2){
         return options.fn(this);//if
       } else {
         return options.inverse(this);//else
@@ -110,6 +118,7 @@ app.use('/', routes);
 app.use('/users', users);
 app.use('/admin', admin);
 app.use('/chat', chat);
+app.use('/profile',profile);
 
 
 

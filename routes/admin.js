@@ -8,38 +8,10 @@ var Topic = require('../models/admin');
 router.get('/', ensureAuthenticated, function(req, res){
 		
 
-		console.log("Requested Homepage");
-		var MongoClient = mongodb.MongoClient;
-		var mongoUrl = "mongodb://127.0.0.1:27017/debatable";
 		var server_date = date.get_date();
 
 
-	MongoClient.connect(mongoUrl,function(err,db){
-		if(err){
-			console.log("Unable to connect to MongoDB " , err)
-		}else{
-			console.log("Connection establish with MongoDB")
-		
-			var topics = db.collection("topics");
-
-			topics.find().toArray(function(err,result){ 
-				if (err){
-					console.log("Error retrieving database collection");
-				}else if (result){ 
-					res.render("admin",{'current_date':server_date,"username":req.user.username,"admin":req.user.admin});
-				}else{
-					console.log("No data found in collection");
-					res.render("admin",{'current_date':server_date,"username":req.user.username,"admin":req.user.admin});
-				}
-
-				db.close();
-			});
-
-			
-		}
-
-
-	})
+	res.render("admin",{'current_date':server_date,"username":req.user.username,"admin":req.user.admin});
  
 
 
@@ -87,8 +59,7 @@ router.post('/add_topic', function(req, res) {
 			if(err) throw err;
 			console.log(topic);
 		});
-
-		console.log("Yeahhhhhh")
+ 
 		//Redirect with confirmation message
 	    req.flash('success_msg', 'Topic has been added.');
 	    res.redirect('/admin');

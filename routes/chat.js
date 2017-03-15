@@ -16,7 +16,7 @@ router.get("/:debate_name/join", ensureAuthenticated, function(req,res){
 		}else{
 			console.log("Connection establish with MongoDB")
 		
-			var topics = db.collection("topics"); 
+			var topics = db.collection("top_topics"); 
 			topics.find({"topic_name_short" : decodeURI(req.params.debate_name)}).toArray(function(err,result){ 
 				if (err){
 					console.log("Error retrieving database collection"); 
