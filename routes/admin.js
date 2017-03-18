@@ -1,6 +1,6 @@
 var express = require('express');
 var mongodb = require('mongodb'); 
-var date = require('./controllers/date_time')
+var date = require('../lib/date_time')
 var router = express.Router();
 var Topic = require('../models/admin');
 

@@ -26,7 +26,7 @@ exports.get_all_debates = function(req, res,db,server_date) {
       return;
     }
      
-    res.render("index",{'top_debates_list':results.top_debates,'user_debates_list':results.user_debates,'current_date':server_date,"authenticated":true,"username":req.user.name,"admin":req.user.admin}); //the response data can be changed
+    res.render("index",{'top_debates_list':results.top_debates,'user_debates_list':results.user_debates,'current_date':server_date,"user":req.user}); //the response data can be changed
 					
   });
 };

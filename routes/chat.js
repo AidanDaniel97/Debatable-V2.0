@@ -1,11 +1,13 @@
 var express = require('express');
 var mongodb = require('mongodb'); 
-var date = require('./controllers/date_time')
+var date = require('../lib/date_time')
 var router = express.Router();
 
 
 // Get admin page /chat
-router.get("/:debate_name/join", ensureAuthenticated, function(req,res){
+router.get("/:debate_name/:debate_list/join", ensureAuthenticated, function(req,res){
+
+
 	//get debate information from databse here 
 	var MongoClient = mongodb.MongoClient;
 	var mongoUrl = "mongodb://127.0.0.1:27017/debatable";
@@ -15,9 +17,15 @@ router.get("/:debate_name/join", ensureAuthenticated, function(req,res){
 			console.log("Unable to connect to MongoDB " , err)
 		}else{
 			console.log("Connection establish with MongoDB")
-		
-			var topics = db.collection("top_topics"); 
-			topics.find({"topic_name_short" : decodeURI(req.params.debate_name)}).toArray(function(err,result){ 
+			
+			if (req.params.debate_list == "users"){
+				var topic_list = db.collection("user_topics"); 
+			}else if (req.params.debate_list == "top"){
+				var topic_list = db.collection("top_topics"); 
+			}
+
+			
+			topic_list.find({"topic_name_short" : decodeURI(req.params.debate_name)}).toArray(function(err,result){ 
 				if (err){
 					console.log("Error retrieving database collection"); 
 				}else if (result){ 
@@ -43,7 +51,7 @@ router.get("/:debate_name/join", ensureAuthenticated, function(req,res){
 
 
 // Get admin page /chat
-router.get("/:debate_name/spectate", function(req,res){
+router.get("/:debate_name/:debate_list/spectate", function(req,res){
 	//get debate information from databse here 
 	var MongoClient = mongodb.MongoClient;
 	var mongoUrl = "mongodb://127.0.0.1:27017/debatable";

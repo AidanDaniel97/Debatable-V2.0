@@ -51,11 +51,11 @@
                             
                             <div class="card-action" align="center">
                                   {{#if ../user}}
-                        <button class="btn btn-default join_debate debate_button" data-debateName = "{{ current_topic.topic_name_short }}">Join Debate</button>
-                        <button class="btn btn-default spectate_debate debate_button" data-debateName = "{{ current_topic.topic_name_short }}">Spectate Debate</button>
+                        <button class="btn btn-default join_debate debate_button" data-debateList = "top" data-debateName = "{{ current_topic.topic_name_short }}">Join Debate</button>
+                        <button class="btn btn-default spectate_debate debate_button" data-debateList = "top" data-debateName = "{{ current_topic.topic_name_short }}">Spectate Debate</button>
                        {{else}} 
                         <a href="/users/login"><button class="btn btn-default" >Login to Join Debate</button></a>
-                        <button class="btn btn-default spectate_debate debate_button" data-debateName = "{{ current_topic.topic_name_short }}">Spectate Debate</button>
+                        <button class="btn btn-default spectate_debate debate_button" data-debateList = "top" data-debateName = "{{ current_topic.topic_name_short }}">Spectate Debate</button>
                        {{/if}}
 
 
@@ -148,11 +148,11 @@
                             
                             <div class="card-action" align="center">
                                   {{#if ../user}}
-                        <button class="btn btn-default join_debate debate_button" data-debateName = "{{ current_topic.topic_name_short }}">Join Debate</button>
-                        <button class="btn btn-default spectate_debate debate_button" data-debateName = "{{ current_topic.topic_name_short }}">Spectate Debate</button>
+                        <button class="btn btn-default join_debate debate_button" data-debateList = "users" data-debateName = "{{ current_topic.topic_name_short }}">Join Debate</button>
+                        <button class="btn btn-default spectate_debate debate_button" data-debateList = "users" data-debateName = "{{ current_topic.topic_name_short }}">Spectate Debate</button>
                        {{else}} 
                         <a href="/users/login"><button class="btn btn-default" >Login to Join Debate</button></a>
-                        <button class="btn btn-default spectate_debate debate_button" data-debateName = "{{ current_topic.topic_name_short }}">Spectate Debate</button>
+                        <button class="btn btn-default spectate_debate debate_button" data-debateList = "users" data-debateName = "{{ current_topic.topic_name_short }}">Spectate Debate</button>
                        {{/if}}
 
 
