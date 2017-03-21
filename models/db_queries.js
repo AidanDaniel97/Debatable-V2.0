@@ -25,8 +25,11 @@ exports.get_all_debates = function(req, res,db,server_date) {
       res.status(500).send(error);
       return;
     }
-     
-    res.render("index",{'top_debates_list':results.top_debates,'user_debates_list':results.user_debates,'current_date':server_date,"user":req.user}); //the response data can be changed
-					
+    
+    if(req.user){
+      res.render("index",{'top_debates_list':results.top_debates,'user_debates_list':results.user_debates,'current_date':server_date,'admin':req.user.admin}); //the response data can be changed
+		}else{
+      res.render("index",{'top_debates_list':results.top_debates,'user_debates_list':results.user_debates,'current_date':server_date}); //the response data can be changed
+    }		
   });
 };

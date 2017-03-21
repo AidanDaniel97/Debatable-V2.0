@@ -35,7 +35,7 @@
                   <li role="presentation"><a href="/">Dashboard</a></li>                  
                   <li role="presentation"><a href="/profile">Profile</a></li>
                   <li role="presentation"><a href="/users/logout">Logout</a></li>
-                  {{#if admin }}<li role="presentation"><a href="/admin">Admin</a></li>{{/if}}
+                  {{#if user.admin }}<li role="presentation"><a href="/admin">Admin</a></li>{{/if}}
                 {{else}}
                   <li role="presentation"><a href="/users/login">Login</a></li>
                   <li role="presentation"><a href="/users/register">Register</a></li>

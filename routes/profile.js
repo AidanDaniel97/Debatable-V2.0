@@ -29,7 +29,7 @@ router.get('/', ensureAuthenticated, function(req, res){
 						console.log("Error retrieving database collection");
 					}else if (result){ 
 						if(req.isAuthenticated()){
-							res.render("profile",{'user_data':result,"admin":req.user.admin}); //the response data can be changed
+							res.render("profile",{'user_data':result,'admin':req.user.admin}); //the response data can be changed
 							
 						}else{
 							res.redirect('/users/login'); //the response data can be changed
@@ -38,7 +38,7 @@ router.get('/', ensureAuthenticated, function(req, res){
 
 					}else{
 						console.log("No data found in collection");
-						res.render("profile",{'user_data':result,"admin":req.user.admin}); //the response data can be changed
+						res.render("profile",{'user_data':result,'admin':req.user.admin}); //the response data can be changed
 					}
 
 					db.close();

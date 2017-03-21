@@ -28,7 +28,7 @@ var TopicSchema = mongoose.Schema({
 			 
 
 
-var Topic = module.exports = mongoose.model('Topic', TopicSchema);
+var Topic = module.exports = mongoose.model('top_topics', TopicSchema);
 
 module.exports.createNewTopic = function(newTopic, callback){
 	        newTopic.save(callback);
