@@ -111,10 +111,14 @@
     });
 
 
-    socket.on('log_data', function(data){
-    console.log("New data to be logged: " , data);
-    });
+  socket.on('log_data', function(data){
+  console.log("New data to be logged: " , data);
+  });
  
+
+   socket.on('chat_won',function(data){
+    alert("You win the chat!!!!, server says: " + data)
+   })
  
 
 
