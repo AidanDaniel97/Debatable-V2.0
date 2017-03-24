@@ -1,5 +1,6 @@
 //Queries for mongo DB debate topics
 var async = require('async');
+var date = require('../lib/date_time.js');
 
 function get_top_debates(db,callback) {
   db.collection('top_topics', function(err, collection) {
@@ -33,3 +34,15 @@ exports.get_all_debates = function(req, res,db,server_date) {
     }		
   });
 };
+
+
+
+exports.set_user_record = function(db,userId){ 
+    db.collection('users').update({ "_id": userId }, 
+    {
+        "$set": {
+            last_win: date.get_date() 
+        }
+
+    });
+}

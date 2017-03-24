@@ -1,8 +1,8 @@
 var express = require('express');
 var mongodb = require('mongodb'); 
-var date = require('../lib/date_time')
+var date = require('../lib/date_time');
 var router = express.Router();
-var db_query = require('../models/db_queries')
+var db_query = require('../models/db_queries');
 
 // Get Homepage
 router.get('/',function(req, res){
