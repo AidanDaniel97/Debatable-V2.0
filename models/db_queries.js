@@ -37,11 +37,16 @@ exports.get_all_debates = function(req, res,db,server_date) {
 
 
 exports.set_user_record = function(field,field_value,db,userId){ 
-    db.collection('users').update({ "_id": userId }, 
+    db.collection('users').update(
+    
+    { 
+      "_id": userId 
+    }, 
+    
     {
-        "$set": {
-            [field]: field_value
-        }
-
+        $set: {[field]: field_value},
+        $inc: { 'win_count': 1 } 
+    
     });
+     
 }
