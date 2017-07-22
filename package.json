@@ -4,9 +4,10 @@
   "description": "Simple authentication system",
   "main": "app.js",
   "scripts": {
-    "start": "node app.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
+      "prestart": "start mongod --config models/data",
+      "start": "node app.js",
+      "posttest": "start mongo admin --eval \"db.getSiblingDB('admin').shutdownServer()\""
+    },
   "author": "Brad Traversy",
   "license": "ISC",
   "dependencies": {

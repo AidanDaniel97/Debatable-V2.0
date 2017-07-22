@@ -11,7 +11,7 @@ var LocalStrategy = require('passport-local').Strategy;
 var mongo = require('mongodb');
 var mongoose = require('mongoose');
 var bodyParser = require('body-parser');
- 
+
 var MongoStore = require('connect-mongo')(session);
 var mongostore = new MongoStore({
         db: 'debatable',
@@ -36,32 +36,32 @@ app.set('views', path.join(__dirname, 'views'));
 app.engine('handlebars', exphbs({
   defaultLayout:'layout',
   helpers: {
-    ifFirst: function (index, options) { 
-      if((index + 1) % 3 == 1){
+    ifFirst: function (index, options) {
+      if((index + 1) % 4 == 1){
         return options.fn(this);//if
       } else {
         return options.inverse(this);//else
-      } 
+      }
     },
-    ifSecond: function (index, options) { 
-      if((index + 1) % 3 == 2){
+    ifSecond: function (index, options) {
+      if((index + 1) % 4 == 2){
         return options.fn(this);//if
       } else {
         return options.inverse(this);//else
-      } 
-    },
-    ifThird: function (index, options) { 
-      if((index + 1) % 3 == 0){
-        return options.fn(this);//if
-      } else {
-        return options.inverse(this);//else
-      } 
-    }
-  } 
+      }
+    }, 
+     ifFourth: function (index, options) {
+        if((index + 1) % 4 == 0){
+          return options.fn(this);//if
+        } else {
+          return options.inverse(this);//else
+        }
+      },
+  }
 }));
 app.set('view engine', 'handlebars');
- 
- 
+
+
 // BodyParser Middleware
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -77,7 +77,7 @@ app.use(session({
     store: mongostore,
     saveUninitialized: true,
     resave: true
-})); 
+}));
 // Passport init
 app.use(passport.initialize());
 app.use(passport.session());
@@ -129,7 +129,7 @@ var server = app.listen(app.get('port'), function(){
 	console.log('Server started on port '+ app.get('port'));
 });
 
- 
 
-//require module - pass server 
+
+//require module - pass server
 var io = require('./lib/chat_sockets').listen(server,mongostore)

@@ -149,7 +149,12 @@ font-family: 'Roboto', sans-serif;
    box-shadow: 0 19px 38px rgba(0, 0, 0, 0.3), 0 15px 12px rgba(0, 0, 0, 0.2);
 }
 .debateCard .wrapper:hover .data {
-   transform: translateY(0);
+   transform: translateY(calc(-44px + -1em));
+}
+
+.debate_card_buttons{
+  position: relative;
+    bottom: -50px;
 }
 .debateCard .data {
    position: absolute;
@@ -168,6 +173,7 @@ font-family: 'Roboto', sans-serif;
 }
 .debateCard .title {
    margin-top: 10px;
+   font-size: 1.5em;
 }
 .debateCard .text {
    height: 70px;
@@ -231,15 +237,15 @@ font-family: 'Roboto', sans-serif;
 }
 .debateCard .button {
    display: block;
-   width: 100px;
+   width: 100%;
    margin: 2em auto 1em;
    text-align: center;
    font-size: 12px;
    color: #fff;
    line-height: 1;
-   position: relative;
-   font-weight: 700;
+   position: relative; 
 }
+/*
 .debateCard .button::after {
    content: '\2192';
    opacity: 0;
@@ -252,7 +258,7 @@ font-family: 'Roboto', sans-serif;
 .debateCard .button:hover::after {
    transform: translate(5px, -50%);
    opacity: 1;
-}
+}*/
 
 
 .debateCard .button{
@@ -404,6 +410,40 @@ font-family: 'Roboto', sans-serif;
 
 .navbar {
     margin-bottom: 0px;
+    background:#336b87;
+    border-radius: 0px;
+    color:white;
+}
+
+.navbar a,
+.navbar p {
+    color:white;
+}
+
+.navbar p{
+    float:left;
+}
+.nav > li > a {
+    position: relative;
+    display: block;
+    padding: 0px 15px;
+    border-radius: 0px;
+    border-bottom: 1px solid white;
+    margin: 0px 16px 0px 0px;
+    padding: 3px 20px 3px 20px;
+}
+
+.nav > li > a:hover {
+    border-bottom: 2px solid white;
+}
+
+.nav-pills{
+  margin-top: 14px;
+}
+
+.nav > li > a:hover, .nav > li > a:focus {
+    text-decoration: none;
+    background-color: transparent;
 }
 
 

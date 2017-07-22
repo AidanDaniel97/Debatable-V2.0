@@ -45,7 +45,7 @@
 
 
 
-                    <div class="col-sm-4">
+                    <div class="col-sm-3">
 
 
 
@@ -60,7 +60,7 @@
                               </div>
                               <ul class="menu-content">
                                 <li>
-                                  <a href="#" class="fa fa-bookmark-o"></a>
+                                  <a href="#" class="fa fa-bookmark-o bookmark_debate" data-debateInfo="{{current_topic._id}}"></a>
                                 </li>
                                 <li><a href="#" class="fa fa-heart-o"><span>18</span></a></li>
                                 <li><a href="#" class="fa fa-comment-o"><span>3</span></a></li>
@@ -71,13 +71,15 @@
                                 <span class="author">Jane Doe</span>
                                 <h1 class="title"><a href="#">{{ current_topic.topic_name }}</a></h1>
                                 <p class="text">{{ current_topic.topic_desc }}</p>
+                                <div class="debate_card_buttons">
                                 {{#if ../user}}
                                     <div class="col-sm-6"><a href="#" class="button join_debate" data-debateList = "top" data-debateName = "{{ current_topic.topic_name_short }}">Join Debate</a></div>
                                     <div class="col-sm-6"><a href="#" class="button spectate_debate" data-debateList = "top" data-debateName = "{{ current_topic.topic_name_short }}">Spectate</a></div>
-                                 
+
                                 {{else}}
                                   <a href="#" class="button">Login to Join</a>
                                 {{/if}}
+                              </div>
                               </div>
                             </div>
                           </div>
@@ -107,7 +109,7 @@
                     </div>
 
 
-            {{#ifThird @index}}
+            {{#ifFourth @index}}
 
                   </div>
 
@@ -117,7 +119,7 @@
                     </div>
                 {{/if}}
 
-            {{/ifThird}}
+            {{/ifFourth}}
 
 
         {{/each}}
@@ -205,7 +207,7 @@
                     </div>
 
 
-            {{#ifThird @index}}
+            {{#ifFourth @index}}
 
                   </div>
 
@@ -215,7 +217,7 @@
                     </div>
                 {{/if}}
 
-            {{/ifThird}}
+            {{/ifFourth}}
 
 
         {{/each}}
