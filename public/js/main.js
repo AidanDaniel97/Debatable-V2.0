@@ -17,7 +17,10 @@ $(".spectate_debate").click(function($this){
 
 $(".bookmark_debate").click(function($this){
 	console.log("Clicked to bookmark debate: " , $(this).attr("data-debateInfo"));
-
+		$.get("/string", function(string) {
+			console.log("called")
+	  console.log(string)
+	});
 });
 
 //Types.js code
