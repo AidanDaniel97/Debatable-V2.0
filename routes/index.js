@@ -14,18 +14,14 @@ router.get('/',function(req, res){
 
 		MongoClient.connect(mongoUrl,function(err,db){
 
-			db_query.get_all_debates(req,res,db,server_date)
+			db_query.get_all_debates(req,res,server_date)
 
 		});
 
 
 });
 
-router.get("/string", function(req, res) {
-	//Started o this
-	//db_query.set_user_record("bookmarks", req,db,user._id,"upd");
 
-});
 
 function ensureAuthenticated(req, res, next){
 	if(req.isAuthenticated()){

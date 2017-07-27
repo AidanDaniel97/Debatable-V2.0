@@ -1,24 +1,37 @@
 //Queries for mongo DB debate topics
 var async = require('async');
+var mongodb = require('mongodb');
 
-function get_top_debates(db,callback) {
-  db.collection('top_topics', function(err, collection) {
+var MongoClient = mongodb.MongoClient;
+var mongoUrl = "mongodb://127.0.0.1:27017/debatable";
+
+
+
+function get_top_debates(callback) {
+  MongoClient.connect(mongoUrl,function(err,db){
+    db.collection('top_topics', function(err, collection) {
+
     collection.find().toArray(callback);
-    //db.close();
+        //db.close();
+
+    });
+
   });
 }
 
-function get_user_debates(db,callback) {
-  db.collection('user_topics', function(err, collection) {
-    collection.find().toArray(callback);
-    //db.close();
+function get_user_debates(callback) {
+  MongoClient.connect(mongoUrl,function(err,db){
+    db.collection('user_topics', function(err, collection) {
+      collection.find().toArray(callback);
+      //db.close();
+    });
   });
 }
 
-exports.get_all_debates = function(req, res,db,server_date) {
+exports.get_all_debates = function(req, res,server_date) {
   async.parallel({
-    top_debates: async.apply(get_top_debates, db),
-    user_debates: async.apply(get_user_debates, db)
+    top_debates: async.apply(get_top_debates),
+    user_debates: async.apply(get_user_debates)
   }, function (error, results) {
     if (error) {
     	console.log("err")
@@ -34,10 +47,12 @@ exports.get_all_debates = function(req, res,db,server_date) {
   });
 };
 
+exports.set_bookmark = function(value){
+  console.log("Value recieved " + value)
+}
 
-
-exports.set_user_record = function(field,field_value,db,userId,command){
-
+exports.set_user_record = function(field,field_value,userId,command){
+  MongoClient.connect(mongoUrl,function(err,db){
   if (command == "inc"){
 
     db.collection('users').update(
@@ -64,6 +79,6 @@ exports.set_user_record = function(field,field_value,db,userId,command){
 
     });
   }
-
+});
 
 }

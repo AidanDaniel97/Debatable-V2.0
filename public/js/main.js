@@ -17,9 +17,11 @@ $(".spectate_debate").click(function($this){
 
 $(".bookmark_debate").click(function($this){
 	console.log("Clicked to bookmark debate: " , $(this).attr("data-debateInfo"));
-		$.get("/string", function(string) {
-			console.log("called")
-	  console.log(string)
+	debateId = $(this).attr("data-debateInfo");
+		$.get("/api/bookmark_debate?debateId=" + debateId, function(req,res) {
+			if (req.error){
+				console.log("Error: " , req.error)
+			}
 	});
 });
 

@@ -26,6 +26,7 @@ var routes = require('./routes/index');
 var users = require('./routes/users');
 var admin = require('./routes/admin');
 var chat = require('./routes/chat');
+var api = require('./routes/api');
 var profile = require('./routes/profile')
 
 // Init App
@@ -49,7 +50,7 @@ app.engine('handlebars', exphbs({
       } else {
         return options.inverse(this);//else
       }
-    }, 
+    },
      ifFourth: function (index, options) {
         if((index + 1) % 4 == 0){
           return options.fn(this);//if
@@ -118,6 +119,7 @@ app.use('/', routes);
 app.use('/users', users);
 app.use('/admin', admin);
 app.use('/chat', chat);
+app.use('/api', api);
 app.use('/profile',profile);
 
 
