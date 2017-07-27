@@ -8,16 +8,9 @@ var db_query = require('../models/db_queries');
 router.get('/',function(req, res){
 
 		console.log("Requested Homepage")
-		var MongoClient = mongodb.MongoClient;
-		var mongoUrl = "mongodb://127.0.0.1:27017/debatable";
 		var server_date = date.get_date();
 
-		MongoClient.connect(mongoUrl,function(err,db){
-
-			db_query.get_all_debates(req,res,server_date)
-
-		});
-
+		db_query.get_all_debates(req,res,server_date)
 
 });
 
