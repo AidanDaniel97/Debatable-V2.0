@@ -21,7 +21,7 @@ router.get("/:debate_name/:debate_list/join", ensureAuthenticated, function(req,
 			if (req.params.debate_list == "users"){
 				var topic_list = db.collection("user_topics"); 
 			}else if (req.params.debate_list == "top"){
-				var topic_list = db.collection("top_topics"); 
+				var topic_list = db.collection("debates"); 
 			}
 
 			

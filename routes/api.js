@@ -4,14 +4,14 @@ var date = require('../lib/date_time');
 var router = express.Router();
 var db_query = require('../models/db_queries');
 
-// Get admin page /api
+// Get API page /api
 router.get("/bookmark_debate", ensureAuthenticated, function(req, res) {
 	console.log("user want's to add debate to profile ", req.query.debateId)
 	//Started o this
 	var field = "debate_bookmarks";
-	db_query.set_user_record(field, req.query.debateId, req.user._id,"upd");  
+	db_query.set_user_record(field, req.query.debateId, req.user._id,"push");
 	//field,field_value,userId,command
-	//res.send('test string');
+	res.send('test string');
 });
 
 function ensureAuthenticated(req, res, next){

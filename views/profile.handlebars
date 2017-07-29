@@ -1,6 +1,6 @@
-  
- 
- 
+
+
+
 
     <!-- Page Content -->
     <div class="container">
@@ -13,10 +13,10 @@
                     <small>{{ user_data.0.username }}</small>
                 </h1>
 
-              
-            </div> 
+
+            </div>
         </div>
-        
+
         <div class="row">
             <div class="col-lg-12">
                 <h3>Name: {{ user_data.0.name }} </h3>
@@ -24,16 +24,21 @@
                 <h3>Username: {{ user_data.0.username }} </h3>
                 <h3>Last won debate: {{ user_data.0.last_win }}</h3>
                 <h3>Number of debates won: {{ user_data.0.win_count }}</h3>
+
+
+
+                <h3>Bookmarked debates: {{ user_data.0.debate_bookmarks }}</h3>
+
+
+
+                <h3>Bookmarks returned :{{ bookmarked_debates }}</h3>
             </div>
-        </div> 
- 
+        </div>
+
 
         <hr>
 
-         
- 
-
-    </div> 
 
 
- 
+
+    </div>
